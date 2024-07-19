@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { WeatherRoutingModule } from './weather-routing.module';
 import { CurrentWeatherComponent } from './components/current-weather/current-weather.component';
+import { TimeComponent } from '../time/time.component';
+import { NgFor } from '@angular/common';
 
 
 @NgModule({
@@ -11,7 +12,9 @@ import { CurrentWeatherComponent } from './components/current-weather/current-we
   ],
   imports: [
     CommonModule,
-    WeatherRoutingModule
+    WeatherRoutingModule,
+    TimeComponent,
+    NgFor
   ]
 })
 export class WeatherModule { }
