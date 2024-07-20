@@ -16,12 +16,13 @@ p
 
 input[type=button]
 {
-  border: 4px solid white;
-  background-color: rgb(255, 255, 255,0);
-  color: white;
+  border: none;
+  background-color: rgb(255, 255, 255);
+  color: #04b7df;
   padding: 4px;
   font-size: 1.5rem;
   font-weight: 700;
+  border-radius: 4px;
 }
 
 input[type=button]:hover

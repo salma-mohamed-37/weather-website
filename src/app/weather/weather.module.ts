@@ -1,20 +1,25 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { WeatherRoutingModule } from './weather-routing.module';
 import { CurrentWeatherComponent } from './components/current-weather/current-weather.component';
+import { UserInputComponent } from './components/user-input/user-input.component';
 import { TimeComponent } from '../time/time.component';
-import { NgFor } from '@angular/common';
+import {ReactiveFormsModule} from '@angular/forms';
+import { DialogModule } from 'primeng/dialog';
+
+
+
 
 
 @NgModule({
   declarations: [
-    CurrentWeatherComponent
+    CurrentWeatherComponent,
+    UserInputComponent
   ],
   imports: [
-    CommonModule,
     WeatherRoutingModule,
     TimeComponent,
-    NgFor
-  ]
+    ReactiveFormsModule,
+    DialogModule,
+]
 })
 export class WeatherModule { }

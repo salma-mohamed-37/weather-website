@@ -1,17 +1,21 @@
 import { Component } from '@angular/core';
 import { CountriesService } from '../../../services/countries.service';
-import { NgFor } from '@angular/common';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-user-input',
-  standalone: true,
-  imports: [NgFor],
   templateUrl: './user-input.component.html',
   styleUrl: './user-input.component.scss'
 })
 export class UserInputComponent {
-  countries :string[] =[]
-  cities:string[]=[]
+  countries :string[] =[];
+
+    input = new FormGroup ({
+    continent: new FormControl("",Validators.required),
+    country: new FormControl("",Validators.required),
+    city : new FormControl("",Validators.required)
+
+  })
 
   constructor(public countriesService : CountriesService){}
 
@@ -25,13 +29,21 @@ export class UserInputComponent {
     }
     else
     {
-      this.countriesService.getCountriesbycontinent(c).subscribe({
-        next: (countries)=>
-        {
-          this.countries=countries
-        },
-        error :(err :Error)=> console.log(err)
-      });
+      this.countries =[
+        "Egypt","Sudan"
+      ]
+      // this.countriesService.getCountriesbycontinent(c).subscribe({
+      //   next: (countries)=>
+      //   {
+      //     this.countries=countries
+      //   },
+      //   error :(err :Error)=> console.log(err)
+      // });
     }
+  }
+
+  submit()
+  {
+    console.log(this.input.value);
   }
 }

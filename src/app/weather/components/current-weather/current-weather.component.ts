@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class CurrentWeatherComponent {
 
+  visable:boolean = false;
+
+  ngOnInit()
+  {
+    this.visable = true;
+  }
+
 }

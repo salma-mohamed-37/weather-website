@@ -1,17 +1,31 @@
 <section>
   <p>Choose the continent, country , city/state you want to get the weather in</p>
   <br>
-  <select (change)="onChooseContinent($event)">
-    <option value="">Continent </option>
-    <option value="Africa">Africa</option>
-    <option value="Asia">Asia</option>
-    <option value="Australia">Australia</option>
-    <option value="Europe">Europe</option>
-    <option value="North America">North America</option>
-    <option value="South America">South America</option>
-  </select>
+  <form [formGroup]="input" (ngSubmit)="submit()">
 
-  <select>
-    <option *ngFor="let c of countries" > {{c}}</option>
-  </select>
+    <select formControlName="continent" (change)="onChooseContinent($event)">
+      <option value="" selected>Continent </option>
+      <option value="Africa">Africa</option>
+      <option value="Asia">Asia</option>
+      <option value="Australia">Australia</option>
+      <option value="Europe">Europe</option>
+      <option value="North America">North America</option>
+      <option value="South America">South America</option>
+    </select>
+
+    @if (countries.length !=0) {
+      <select formControlName="country">
+        <option value="" selected>Country</option>
+       @for (c of countries; track $index)
+       {
+          <option [value]="c">{{c}}</option>
+       }
+      </select>
+
+      <input type="text" name="city" placeholder="City" formControlName="city"/>
+    }
+    <br/>
+      <p class="submit-button"><input type="submit" name="submit" value="submit" [disabled]="input.invalid"/></p>
+
+  </form>
 </section>

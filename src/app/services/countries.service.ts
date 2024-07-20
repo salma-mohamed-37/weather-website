@@ -18,7 +18,6 @@ export class CountriesService {
       map(data => Object.keys(data).map(key => data[key].name)),
       catchError(error => {
         console.error('Error fetching countries:', error);
-        // Handle the error and return an empty array or other fallback value
         return [];
       })
     );
