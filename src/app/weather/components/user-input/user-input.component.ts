@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import { CountriesService } from '../../../services/countries.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { UserInput } from '../../../interfaces/UserInput';
+import { InputService } from '../../../services/input.service';
 
 @Component({
   selector: 'app-user-input',
@@ -17,7 +19,7 @@ export class UserInputComponent {
 
   })
 
-  constructor(public countriesService : CountriesService){}
+  constructor(public countriesService : CountriesService, public inputService: InputService){}
 
   onChooseContinent(event :Event)
   {
@@ -44,6 +46,13 @@ export class UserInputComponent {
 
   submit()
   {
-    console.log(this.input.value);
+    if (this.input.valid)
+    {
+      var i: UserInput={
+        continent:this.input.value.continent!,
+        country:this.input.value.country!,
+        city:this.input.value.city!
+      }
+    }
   }
 }
