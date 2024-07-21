@@ -1,3 +1,4 @@
+<p-dialog  [modal]="true" [(visible)]="isVisible" header="City" >
 <section>
   <p>Choose the continent, country , city/state you want to get the weather in</p>
   <br>
@@ -29,3 +30,5 @@
 
   </form>
 </section>
+</p-dialog>
+<input type="button" (click)="display()" value="display"/>

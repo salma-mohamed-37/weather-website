@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component, EventEmitter, Input, Output} from '@angular/core';
 import { CountriesService } from '../../../services/countries.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserInput } from '../../../interfaces/UserInput';
@@ -10,6 +10,8 @@ import { InputService } from '../../../services/input.service';
   styleUrl: './user-input.component.scss'
 })
 export class UserInputComponent {
+
+  isVisible: boolean=true;
   countries :string[] =[];
 
     input = new FormGroup ({
@@ -44,6 +46,8 @@ export class UserInputComponent {
     }
   }
 
+
+
   submit()
   {
     if (this.input.valid)
@@ -53,6 +57,18 @@ export class UserInputComponent {
         country:this.input.value.country!,
         city:this.input.value.city!
       }
+
+      this.inputService.setData(i)
+      this.isVisible = false;
     }
+    else
+    {
+      console.log("not valid")
+    }
+  }
+
+  display()
+  {
+    this.isVisible=true
   }
 }
