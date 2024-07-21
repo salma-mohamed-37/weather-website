@@ -5,6 +5,7 @@ import { UserInputComponent } from './components/user-input/user-input.component
 import { TimeComponent } from '../time/time.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { DialogModule } from 'primeng/dialog';
+import { CardComponent } from './components/card/card.component';
 
 
 
@@ -13,7 +14,8 @@ import { DialogModule } from 'primeng/dialog';
 @NgModule({
   declarations: [
     CurrentWeatherComponent,
-    UserInputComponent
+    UserInputComponent,
+    CardComponent
   ],
   imports: [
     WeatherRoutingModule,

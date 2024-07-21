@@ -33,16 +33,14 @@ export class UserInputComponent {
     }
     else
     {
-      this.countries =[
-        "Egypt","Sudan"
-      ]
-      // this.countriesService.getCountriesbycontinent(c).subscribe({
-      //   next: (countries)=>
-      //   {
-      //     this.countries=countries
-      //   },
-      //   error :(err :Error)=> console.log(err)
-      // });
+
+      this.countriesService.getCountriesbycontinent(c).subscribe({
+        next: (countries)=>
+        {
+          this.countries=countries
+        },
+        error :(err :Error)=> console.log(err)
+      });
     }
   }
 

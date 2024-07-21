@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, map, Observable } from 'rxjs';
+import { catchError, map, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,13 +13,19 @@ export class CountriesService {
 
   getCountriesbycontinent(continentName :string) : Observable<string[]>
   {
-    var countries:string[]=[]
-    return this.http.get<any>(`${this.apiURL}region/${continentName}?apikey=${this.apiToken}`).pipe(
-      map(data => Object.keys(data).map(key => data[key].name)),
-      catchError(error => {
-        console.error('Error fetching countries:', error);
-        return [];
-      })
-    );
+    // var countries:string[]=[]
+    // return this.http.get<any>(`${this.apiURL}region/${continentName}?apikey=${this.apiToken}`).pipe(
+    //   map(data => Object.keys(data).map(key => data[key].name)),
+    //   catchError(error => {
+    //     console.error('Error fetching countries:', error);
+    //     return [];
+    //   })
+    // );
+
+    var dummy =[
+      "Egypt","Sudan"
+    ]
+    return of(dummy)
+
   }
 }

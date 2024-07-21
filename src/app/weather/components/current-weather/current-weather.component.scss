@@ -1,0 +1,33 @@
+main
+{
+  background-color: #2ECCF0;
+  color:white;
+  height: 100%;
+}
+
+.card, .main-card
+{
+  //border:1px solid lightgray;
+  border-radius: 5px;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
+  width: fit-content;
+  height: fit-content;
+  padding: 4px;
+  font-size: 2rem;
+}
+
+
+.main-card
+{
+  text-align: center;
+}
+
+.pi
+{
+  font-size: 2rem;
+}
+
+.temp, .pi-cloud
+{
+  font-size: 6rem;
+}
