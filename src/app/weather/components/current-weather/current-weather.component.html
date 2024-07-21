@@ -1,32 +1,39 @@
-<div class="container">
-<main class="flex flex-column justify-content-between">
-  <aside class="flex flex-row justify-content-between">
-    <div class="main-card">
-      <i class="pi pi-map-marker"></i> {{city}}, {{country}}
-      <br/>
+<app-user-input></app-user-input>
+@if (currentWeather !== undefined && city!== undefined)
+{
+  <div class="container">
+    <main class="flex flex-column justify-content-between">
+      <aside class="flex flex-row justify-content-between">
+        <div class="main-card">
+          <i class="pi pi-map-marker"></i> {{city}}, {{country}}
+          <br/>
 
-      <img [src]=currentWeather!.icon alt="Weather Icon" />
-      <p class="temp">{{currentWeather!.temprature}}</p>
-      <p>{{currentWeather!.description}}</p>
-    </div>
-    <div>
-        <div  class="card">
-          <app-time></app-time>
+          <img [src]=currentWeather!.icon alt="Weather Icon" />
+          <p class="temp">{{currentWeather!.temprature}}</p>
+          <p>{{currentWeather!.description}}</p>
         </div>
-        <app-user-input></app-user-input>
+
+        <div>
+            <div  class="card">
+              <app-time></app-time>
+            </div>
+
+
+        </div>
+
+      </aside>
+
+
+      <aside class="grid justify-content-between" style="margin:0;">
+        @for (p of currentWeather!.info; track $index; let idx = $index)
+        {
+          <span class="col-3"><app-card [property]="p"></app-card></span>
+
+
+        }
+
+      </aside>
+    </main>
     </div>
 
-  </aside>
-
-
-  <aside class="grid justify-content-between" style="margin:0;">
-    @for (p of currentWeather?.info; track $index; let idx = $index)
-    {
-      <span class="col-3"><app-card [property]="p"></app-card></span>
-
-
-    }
-
-  </aside>
-</main>
-</div>
+}

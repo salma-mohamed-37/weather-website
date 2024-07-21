@@ -11,7 +11,7 @@ import { InputService } from '../../../services/input.service';
 })
 export class UserInputComponent {
 
-  isVisible: boolean=false;
+  isVisible: boolean=true;
   countries :string[] =[];
 
     input = new FormGroup ({

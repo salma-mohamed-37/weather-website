@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, effect } from '@angular/core';
 import { InputService } from '../../../services/input.service';
 import { WeatherService } from '../../../services/weather.service';
 import { WeatherInformation } from '../../../interfaces/weather-information';
@@ -14,24 +14,36 @@ export class CurrentWeatherComponent {
 
   currentWeather : WeatherInformation|undefined = undefined;
 
-  constructor(public inputService : InputService, public weatherService: WeatherService) {}
+  constructor(public inputService : InputService, public weatherService: WeatherService)
+  {
+    effect(() => {
+      this.city = this.inputService.getData().city
+      this.country = this.inputService.getData().country
+
+      if (this.city !== undefined)
+      {
+        this.weatherService.getWeather().subscribe({
+          next:(w) =>
+          {
+            this.currentWeather= new WeatherInformation(w)
+            console.log("weather")
+            console.log(this.currentWeather)
+          },
+          error:(err)=>
+          {
+            console.log(err)
+          }
+        });
+      }
+     });
+
+
+
+  }
 
   ngOnInit()
   {
-    this.city = this.inputService.getData().city
-    this.country = this.inputService.getData().country
 
-    this.weatherService.getWeather().subscribe({
-      next:(w) =>
-      {
-        this.currentWeather=w
-        console.log(w)
-      },
-      error:(err)=>
-      {
-        console.log(err)
-      }
-    });
 
   }
 

@@ -6,7 +6,7 @@ import { retry } from 'rxjs';
   providedIn: 'root'
 })
 export class InputService {
-  currentData = signal<UserInput>({continent: "africa", country:"egypt", city:"cairo"});
+  currentData = signal<UserInput>({});
   constructor() { }
 
   setData(newData:UserInput)
