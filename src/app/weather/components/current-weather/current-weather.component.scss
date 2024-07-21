@@ -1,15 +1,19 @@
-main
+.container
 {
   background-color: #2ECCF0;
-  color:white;
   height: 100%;
+  min-height: 100vh;
+}
+main
+{
+  color:white;
+  min-height: 100vh;
 }
 
 .card, .main-card
 {
-  //border:1px solid lightgray;
   border-radius: 5px;
-  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
   width: fit-content;
   height: fit-content;
   padding: 4px;
@@ -20,6 +24,7 @@ main
 .main-card
 {
   text-align: center;
+
 }
 
 .pi
@@ -27,7 +32,13 @@ main
   font-size: 2rem;
 }
 
-.temp, .pi-cloud
+.temp
 {
-  font-size: 6rem;
+  font-size: 7rem;
+}
+
+img
+{
+  height: 6rem;
+  width: 6rem;
 }

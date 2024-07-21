@@ -1,3 +1,4 @@
+<div class="container">
 <main class="flex flex-column justify-content-between">
   <aside class="flex flex-row justify-content-between">
     <div class="main-card">
@@ -18,14 +19,14 @@
   </aside>
 
 
-  <aside class="flex">
+  <aside class="grid justify-content-between" style="margin:0;">
     @for (p of currentWeather?.info; track $index; let idx = $index)
     {
       <span class="col-3"><app-card [property]="p"></app-card></span>
+
+
     }
 
   </aside>
 </main>
-
-
-
+</div>
