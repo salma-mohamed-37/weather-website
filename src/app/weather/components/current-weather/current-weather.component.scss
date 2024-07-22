@@ -20,6 +20,17 @@ main
   font-size: 2rem;
 }
 
+input[type=button]
+{
+  border: none;
+  background-color: rgb(255, 255, 255);
+  color: #2ECCF0;
+  padding: 4px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  border-radius: 4px;
+}
+
 
 .main-card
 {
