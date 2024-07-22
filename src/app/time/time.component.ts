@@ -46,5 +46,4 @@ export class TimeComponent {
     this.day=now.format("ddd")
   }
 
-
 }

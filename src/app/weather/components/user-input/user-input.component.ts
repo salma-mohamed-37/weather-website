@@ -4,6 +4,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { UserInput } from '../../../interfaces/UserInput';
 import { InputService } from '../../../services/input.service';
 import { MessageService } from 'primeng/api';
+import * as moment from 'moment-timezone';
 
 @Component({
   selector: 'app-user-input',
@@ -52,12 +53,20 @@ export class UserInputComponent {
     if (this.input.valid)
     {
       var i: UserInput={
-        continent:this.input.value.continent!,
-        country:this.input.value.country!,
-        city:this.input.value.city!
+        continent:this.input.value.continent!.charAt(0).toUpperCase() + this.input.value.continent!.slice(1),
+        country:this.input.value.country!.charAt(0).toUpperCase() + this.input.value.country!.slice(1),
+        city:this.input.value.city!.charAt(0).toUpperCase() + this.input.value.city!.slice(1)
+      }
+      if(this.isValidRegion(i))
+      {
+        this.inputService.setData(i)
+      }
+      else
+      {
+        this.showToast("Invalid time zone:" + i.continent+"/"+i.city)
       }
 
-      this.inputService.setData(i)
+
     }
     else
     {
@@ -65,6 +74,20 @@ export class UserInputComponent {
     }
   }
 
+
+  isValidRegion(i:UserInput)
+  {
+    const timeZones = moment.tz.names()
+
+    if (timeZones.includes(i.continent+"/"+i.city))
+    {
+      return true
+    }
+    else
+    {
+      return false
+    }
+  }
   display()
   {
     this.isVisible=true
