@@ -22,12 +22,12 @@ export class WeatherService {
 
     var weather = undefined
     var city = this.inputService.getData().city
-    // return this.http.get<any>(`${this.apiURL}${city}/EN`,{ headers: headers }).pipe(
-    //   catchError(error => {
-    //      this.messageService.add({ severity: 'error', summary: 'Error', detail: error.error.message , sticky: true });
-    //      return [];
-    //     })
-    // );
+    return this.http.get<any>(`${this.apiURL}${city}/EN`,{ headers: headers }).pipe(
+      catchError(error => {
+         this.messageService.add({ severity: 'error', summary: 'Error', detail: error.error.message , sticky: true });
+         return [];
+        })
+    );
 
     const r : any = {
         coord: {

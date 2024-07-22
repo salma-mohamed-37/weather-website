@@ -17,7 +17,6 @@ export class UserInputComponent {
   countries :string[] =[];
 
     input = new FormGroup ({
-    continent: new FormControl("",Validators.required),
     country: new FormControl("",Validators.required),
     city : new FormControl("",Validators.required)
 
@@ -25,68 +24,50 @@ export class UserInputComponent {
 
   constructor(public countriesService : CountriesService, public inputService: InputService, public messageService : MessageService){}
 
-  onChooseContinent(event :Event)
+  ngOnInit()
   {
-    const selectElement = event.target as HTMLSelectElement;
-    var c = selectElement.value;
-    if (c == "")
-    {
-      console.log("required")
-    }
-    else
-    {
-
-      this.countriesService.getCountriesbycontinent(c).subscribe({
-        next: (countries)=>
-        {
-          this.countries=countries
-        },
-        error :(err :Error)=> console.log(err)
-      });
-    }
+    this.countriesService.getCountries().subscribe({
+      next: (countries)=>
+      {
+        this.countries=countries
+      },
+      error :(err :Error)=> console.log(err)
+    });
   }
-
-
 
   submit()
   {
-    if (this.input.valid)
+    var currentTimeZone = this.getRegion()
+    console.log(currentTimeZone)
+    if (currentTimeZone === undefined)
     {
-      var i: UserInput={
-        continent:this.input.value.continent!.charAt(0).toUpperCase() + this.input.value.continent!.slice(1),
-        country:this.input.value.country!.charAt(0).toUpperCase() + this.input.value.country!.slice(1),
-        city:this.input.value.city!.charAt(0).toUpperCase() + this.input.value.city!.slice(1)
-      }
-      if(this.isValidRegion(i))
-      {
-        this.inputService.setData(i)
-      }
-      else
-      {
-        this.showToast("Invalid time zone:" + i.continent+"/"+i.city)
-      }
-
-
+      this.showToast("No valid time zone")
     }
     else
     {
-      this.showToast("All fields are required")
+      if (this.input.valid)
+        {
+          var i: UserInput={
+            country:this.input.value.country!.charAt(0).toUpperCase() + this.input.value.country!.slice(1),
+            city:this.input.value.city!.charAt(0).toUpperCase() + this.input.value.city!.slice(1),
+            timeZone :currentTimeZone
+          }
+
+          this.inputService.setData(i)
+        }
+        else
+        {
+          this.showToast("All fields are required")
+        }
     }
   }
 
 
-  isValidRegion(i:UserInput)
+  getRegion()
   {
     const timeZones = moment.tz.names()
 
-    if (timeZones.includes(i.continent+"/"+i.city))
-    {
-      return true
-    }
-    else
-    {
-      return false
-    }
+    return timeZones.filter(z => z.toLowerCase().includes(this.input.value.city!.replace(" ","_").toLowerCase()))[0]
   }
   display()
   {

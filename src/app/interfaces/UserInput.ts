@@ -1,5 +1,5 @@
 export interface UserInput {
-  continent?:string;
+  timeZone?:string;
   country?:string
   city?: string;
 }

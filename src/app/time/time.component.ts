@@ -14,7 +14,6 @@ export class TimeComponent {
   date:string = "";
   time:string="";
   day:string="";
-  region:string=""
 
   data: UserInput| undefined = undefined ;
 
@@ -31,7 +30,7 @@ export class TimeComponent {
 
      if (this.isDataExists())
       {
-        this.region = this.data.continent+"/"+this.data.city
+        this.updateTime()
         setInterval(() => this.updateTime(), 1000);
       }
 
@@ -40,7 +39,7 @@ export class TimeComponent {
 
   updateTime()
   {
-    var now = moment.tz(this.region)
+    var now = moment.tz(this.data!.timeZone!)
     this.date = now.format("DD MMMM YYYY")
     this.time = now.format("h:mm:ss a")
     this.day=now.format("ddd")
