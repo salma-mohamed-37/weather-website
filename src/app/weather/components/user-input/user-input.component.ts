@@ -37,28 +37,28 @@ export class UserInputComponent {
 
   submit()
   {
-    var currentTimeZone = this.getRegion()
-    console.log(currentTimeZone)
-    if (currentTimeZone === undefined)
+    if (this.input.valid)
     {
-      this.showToast("No valid time zone")
+      var currentTimeZone = this.getRegion()
+      console.log(currentTimeZone)
+      if (currentTimeZone === undefined)
+      {
+        this.showToast("No valid time zone")
+      }
+      else
+      {
+        var i: UserInput={
+          country:this.input.value.country!.charAt(0).toUpperCase() + this.input.value.country!.slice(1),
+          city:this.input.value.city!.charAt(0).toUpperCase() + this.input.value.city!.slice(1),
+            timeZone :currentTimeZone
+        }
+
+        this.inputService.setData(i)
+      }
     }
     else
     {
-      if (this.input.valid)
-        {
-          var i: UserInput={
-            country:this.input.value.country!.charAt(0).toUpperCase() + this.input.value.country!.slice(1),
-            city:this.input.value.city!.charAt(0).toUpperCase() + this.input.value.city!.slice(1),
-            timeZone :currentTimeZone
-          }
-
-          this.inputService.setData(i)
-        }
-        else
-        {
-          this.showToast("All fields are required")
-        }
+      this.showToast("All fields are required")
     }
   }
 
