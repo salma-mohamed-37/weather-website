@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { catchError, Observable, of } from 'rxjs';
 import { WeatherInformation } from '../interfaces/weather-information';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { InputService } from './input.service';
+import { MessageService } from 'primeng/api';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WeatherService {
 
-  constructor(public http : HttpClient, public inputService: InputService) { }
+  constructor(public http : HttpClient, public inputService: InputService, public messageService : MessageService) { }
 
   apiURL :string ="https://open-weather13.p.rapidapi.com/city/"
   getWeather():Observable<any>
@@ -21,9 +22,12 @@ export class WeatherService {
 
     var weather = undefined
     var city = this.inputService.getData().city
-    //return this.http.get<any>(`${this.apiURL}${city}/EN`,{ headers: headers })
-
-
+    // return this.http.get<any>(`${this.apiURL}${city}/EN`,{ headers: headers }).pipe(
+    //   catchError(error => {
+    //      this.messageService.add({ severity: 'error', summary: 'Error', detail: error.error.message , sticky: true });
+    //      return [];
+    //     })
+    // );
 
     const r : any = {
         coord: {

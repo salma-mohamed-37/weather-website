@@ -32,6 +32,7 @@ export class CurrentWeatherComponent {
             this.currentWeather= new WeatherInformation(w)
             console.log("weather")
             console.log(this.currentWeather)
+            this.userInputComponent.hide()
           },
           error:(err)=>
           {
@@ -45,5 +46,10 @@ export class CurrentWeatherComponent {
   display()
   {
     this.userInputComponent.isVisible=true;
+  }
+
+  hide()
+  {
+    this.userInputComponent.isVisible=false
   }
 }
