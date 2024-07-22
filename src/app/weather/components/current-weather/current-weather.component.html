@@ -26,7 +26,7 @@
       <aside class="grid justify-content-between" style="margin:0;">
         @for (p of currentWeather!.info; track $index; let idx = $index)
         {
-          <span class="col-3"><app-card [property]="p"></app-card></span>
+          <span class="col-12 sm:col-12 md:col-6 lg:col-6 xl:col-3"><app-card [property]="p"></app-card></span>
 
 
         }
